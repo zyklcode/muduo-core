@@ -28,6 +28,7 @@
     char s[1024] = {0}; \
     snprintf(s, 1024, logmsgFormat, ##__VA_ARGS__); \
     logger.log(s); \
+    exit(-1); \
 } while(0)
 
 
