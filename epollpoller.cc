@@ -28,7 +28,7 @@ EpollPoller::~EpollPoller(){
 
 Timestamp EpollPoller::poll(int timeout, ChannelList* activeChannels){
     // 实际上应该用LOG_DEBUG输出日志更为合理
-    LOG_INFO("func=%s => fd total count:%d", __FUNCTION__, channels_.size());
+    LOG_INFO("func=%s => fd total count:%d", __FUNCTION__, static_cast<int>(channels_.size()));
     int numEvents = epoll_wait(epollfd_, &*events_.begin(), events_.size(), timeout);
     int saveErrno = errno;
     Timestamp now(Timestamp::now());
@@ -46,7 +46,7 @@ Timestamp EpollPoller::poll(int timeout, ChannelList* activeChannels){
             LOG_ERROR("EPollPoller::poll() err!");
         }
     }
-    return now
+    return now;
 }
 
 
