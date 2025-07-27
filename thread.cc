@@ -3,6 +3,8 @@
 #include <semaphore.h>
 
 
+std::atomic<int> Thread::numCreated_(0);
+
 Thread::Thread(ThreadFunc func, const std::string& name)
 : joined_(false)
 , started_(false)

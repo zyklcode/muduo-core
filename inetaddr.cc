@@ -16,6 +16,10 @@ const struct sockaddr_in* InetAddr::getSockAddr() const {
     return &addr_;
 }
 
+void InetAddr::setSockAddr(const struct sockaddr_in& addr) {
+    addr_ = addr; // 设置地址结构体
+}
+
 std::string InetAddr::toIp() const {
     char buffer[INET_ADDRSTRLEN] = {0};
     inet_ntop(AF_INET, &addr_.sin_addr, buffer, sizeof(buffer)); // 将网络字节序的IP地址转换为字符串
