@@ -1,5 +1,6 @@
 #include "buffer.h"
 #include <sys/uio.h>
+#include <unistd.h>
 
 ssize_t Buffer::readFd(int fd, int* savedErrno){
     char extrabuf[65535] = {0};
@@ -24,5 +25,15 @@ ssize_t Buffer::readFd(int fd, int* savedErrno){
         append(extrabuf, n - writable);
     }
     
+    return n;
+}
+
+ssize_t Buffer::writeFd(int fd, int* savedErrno) {
+    ssize_t n = ::write(fd, peek(), readableBytes());
+    if (n < 0) {
+        *savedErrno = errno;
+    } else {
+        retrieve(n);
+    }
     return n;
 }

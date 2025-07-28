@@ -63,6 +63,7 @@ private:
     EventLoop* mainLoop_;
     const std::string ipPort_;
     const std::string name_;
+    const InetAddr localAddr_;
     std::unique_ptr<Acceptor> acceptor_;            // 运行在mainLoop_, 任务是监听新的连接事件
 
     std::shared_ptr<EventLoopThreadPool> threadPool_;
